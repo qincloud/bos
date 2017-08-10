@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/css/bos/common/base/action/BaseAction.java=UTF-8
+encoding//src/main/java/com/css/bos/common/base/dao/IBaseDao.java=UTF-8
+encoding//src/main/java/com/css/bos/common/base/dao/impl/BaseDaoImpl.java=UTF-8
+encoding//src/main/java/com/css/bos/utils/PageBean.java=UTF-8

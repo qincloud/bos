@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.objectFactory" value="spring"/>
+	<!-- 注册国际化文件 -->
+	<constant name="struts.custom.i18n.resources" value="message"></constant>
+	<package name="basicstruts2" extends="struts-default">
+		<action name="page_*_*">
+			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+		<action name="menuAction_*" class="MenuAction"  method="{1}">
+		  <result name="list">/WEB-INF/pages/sys/menu.jsp</result>
+		</action>
+	</package>
+</struts>
