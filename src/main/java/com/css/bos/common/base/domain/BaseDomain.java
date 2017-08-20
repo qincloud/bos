@@ -2,7 +2,11 @@ package com.css.bos.common.base.domain;
 
 import java.util.Date;
 
-public class BaseDomain {
+public class BaseDomain implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5890046352576267101L;
 	protected String id;
 	protected String delFlag;
 	protected Date createTime;

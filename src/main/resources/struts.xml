@@ -4,15 +4,39 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="false" />
-	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.objectFactory" value="spring" />
 	<!-- 注册国际化文件 -->
 	<constant name="struts.custom.i18n.resources" value="message"></constant>
 	<package name="basicstruts2" extends="struts-default">
+		<interceptors>
+			<!-- 注册拦截器 -->
+			<interceptor name="CSSLoginInterceptor"
+				class="com.css.bos.common.sys.intercepter.CSSLoginIntercepter">
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="CSSLoginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 指定默认栈 -->
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
 		<action name="page_*_*">
-			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp
+			</result>
 		</action>
-		<action name="menuAction_*" class="MenuAction"  method="{1}">
-		  <result name="list">/WEB-INF/pages/sys/menu.jsp</result>
+		<action name="userAction_*" class="com.css.bos.common.sys.action.UserAction" method="{1}">
+			<result name="list">/WEB-INF/pages/sys/user.jsp</result>
+			<result name="home">/WEB-INF/pages/common/index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="menuAction_*" class="com.css.bos.common.sys.action.MenuAction" method="{1}">
+			<result name="list">/WEB-INF/pages/sys/menu.jsp</result>
 		</action>
 	</package>
 </struts>

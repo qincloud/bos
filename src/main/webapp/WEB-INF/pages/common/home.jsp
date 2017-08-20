@@ -1,24 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/pages/include/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- 导入jquery核心类库 -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
-<!-- 导入easyui类库 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/default.css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
 <script type="text/javascript"
@@ -30,19 +20,19 @@
 			title : '公共栏',
 			height : 255,
 			collapsible : true,
-			href : 'page_portal_gonggao.action'
+			href : '#'
 		}, {
 			id : 'p2',
 			title : '代办事宜',
 			height : 255,
 			collapsible : true,
-			href : 'page_portal_daiban.action'
+			href : '#'
 		}, {
 			id : 'p3',
 			title : '预警信息',
 			height : 255,
 			collapsible : true,
-			href : 'page_portal_yujing.action'
+			href : '#'
 		}, {
 			id : 'p4',
 			title : '系统BUG反馈',

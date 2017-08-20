@@ -26,12 +26,16 @@ public class MenuServiceImpl implements MenuService {
 	public void delete(Menu menu) {
 		menuDao.delete(menu);
 	}
-	
-	public List<Menu> findAll(){
+
+	public List<Menu> findAll() {
 		return menuDao.findAll();
 	}
-	
-	public Menu findById(String id){
+
+	public Menu findById(String id) {
 		return menuDao.findByPrimary(id);
+	}
+
+	public List<Menu> findByUserOfMenu(String userid) {
+		return menuDao.findByUserOfMenu(userid);
 	}
 }

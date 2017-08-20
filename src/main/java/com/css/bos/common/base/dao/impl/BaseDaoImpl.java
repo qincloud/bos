@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -26,12 +27,14 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
 	private Class<T> entityClass;
 	private SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
-	@Resource
+	@Resource(name = "sessionFactory")
+	public void setSessionFactoryOverride(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+
+	}
+
 	// @Autowired
 	// @Qualifier(value="abc")
-	public void setMySessionFactory(SessionFactory sessionFactory) {
-		super.setSessionFactory(sessionFactory);
-	}
 
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {
@@ -41,6 +44,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
 	}
 
 	public void save(T entity) {
+		Transaction tran= getSessionFactory().getCurrentSession().beginTransaction();
 		entity.setDelFlag("0");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_WEEK, 0);
@@ -49,15 +53,21 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		System.out.println("保存操作");
 		this.getHibernateTemplate().save(entity);
+		tran.commit();
 	}
 
 	public void delete(T entity) {
+		Transaction tran= getSessionFactory().getCurrentSession().beginTransaction();
 		entity.setDelFlag("1");
-		this.getHibernateTemplate().update(entity);
+		System.out.println("删除操作");
+		getSessionFactory().getCurrentSession().update(entity);
+		tran.commit();
 	}
 
 	public void update(T entity) {
+		Transaction tran= getSessionFactory().getCurrentSession().beginTransaction();
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_WEEK, 0);
 		try {
@@ -66,10 +76,11 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
 			e.printStackTrace();
 		}
 		this.getHibernateTemplate().update(entity);
+		tran.commit();
 	}
 
 	public T findById(Serializable id) {
-		return this.getHibernateTemplate().get(entityClass, id);
+		return (T) getSessionFactory().getCurrentSession().get(entityClass, id);
 	}
 
 	@SuppressWarnings("unchecked")

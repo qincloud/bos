@@ -27,11 +27,18 @@
 			<version>2.3.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+			<type>jar</type>
+		</dependency>
 		<!--添加JStl支持 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<type>jar</type>
 		</dependency>
 		<!--添加日志log4j支持 -->
 		<dependency>
@@ -73,7 +80,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.1.7.Final</version>
+			<version>3.6.5.Final</version>
 		</dependency>
 		<!-- 添加spring支持 -->
 		<dependency>

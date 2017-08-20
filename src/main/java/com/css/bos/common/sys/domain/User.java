@@ -3,15 +3,21 @@ package com.css.bos.common.sys.domain;
 import com.css.bos.common.base.domain.BaseDomain;
 
 public class User extends BaseDomain implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9144274715213231907L;
 	private String loginname;
 	private String password;
 	private String username;
 	private String email;
 	private String telphone;
 	private String mobile;
+	private String theme;
+	
+	public User(){
+		
+	}
 
-	public User(String loginname, String password, String username, String email, String telphone, String mobile) {
+	public User(String loginname, String password, String username, String email, String telphone, String mobile,
+			String theme) {
 		super();
 		this.loginname = loginname;
 		this.password = password;
@@ -19,6 +25,7 @@ public class User extends BaseDomain implements java.io.Serializable {
 		this.email = email;
 		this.telphone = telphone;
 		this.mobile = mobile;
+		this.theme = theme;
 	}
 
 	public String getLoginname() {
@@ -67,6 +74,20 @@ public class User extends BaseDomain implements java.io.Serializable {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+	@Override
+	public String toString() {
+		return "User [loginname=" + loginname + ", password=" + password + ", username=" + username + ", email=" + email
+				+ ", telphone=" + telphone + ", mobile=" + mobile + ", theme=" + theme + "]";
 	}
 
 }
